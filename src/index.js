@@ -9,44 +9,24 @@ import ReactDOM from 'react-dom'
  Esto succede a una funcion onClick dentro de un atributo de <button>
 */
 class TarjetaFruta extends React.Component {
-	constructor() {
-		super()
-
-		/*o tambien podemos agregar el llamado desde el constructor
-      lo que a mi parecer le da un acabado mas limpio, Dejamos en la
-      funcion `onClick` el llamado a this.agregar solamente.
-
-      Esto es funcional con algunos bind pero podemos hacerlo aun mas chevere
-      this.agregar = this.agregar.bind(this)
-      this.restar = this.restar.bind(this)
-    */
-
-		/* Creamos un array para agregar nuestros metodos */
-		const METHODS = ['agregar', 'restar', 'limpiar']
-
-		/* Luego recorremos el array y a cada metodo le hacemos el bind(this) */
-		METHODS.forEach((method) => {
-			this[method] = this[method].bind(this)
-		})
-
-		this.state = {
-			cantidad: 0,
-		}
+	/* en este caso, eliminamos el constructor entero */
+	state = {
+		cantidad: 0,
 	}
 
-	agregar() {
+	agregar = () => {
 		this.setState({
 			cantidad: this.state.cantidad + 1,
 		})
 	}
 
-	restar() {
+	restar = () => {
 		this.setState({
 			cantidad: this.state.cantidad - 1,
 		})
 	}
 
-	limpiar() {
+	limpiar = () => {
 		this.setState({
 			cantidad: 0,
 		})
