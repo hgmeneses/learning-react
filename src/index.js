@@ -14,23 +14,17 @@ class TarjetaFruta extends React.Component {
 		cantidad: 0,
 	}
 
-	agregar = () => {
-		this.setState({
-			cantidad: this.state.cantidad + 1,
-		})
-	}
+	agregar = () => this.setState({
+        cantidad: this.state.cantidad + 1,
+    })
 
-	restar = () => {
-		this.setState({
-			cantidad: this.state.cantidad - 1,
-		})
-	}
+    restar = () => this.setState({
+        cantidad: this.state.cantidad - 1,
+    })
 
-	limpiar = () => {
-		this.setState({
-			cantidad: 0,
-		})
-	}
+    limpiar = () => this.setState({
+        cantidad: 0,
+    })
 
 	render() {
 		return (
