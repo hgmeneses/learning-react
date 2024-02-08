@@ -29,21 +29,35 @@ class TarjetaFruta extends React.Component {
 		})
 
 	render() {
+        /* si es necesario podemos usarla en la constante de styles directamente o refactorizarla poniendola en una constante */
+        const hasItems = this.state.cantidad > 0
+
+		/* Dentro de react tenemos la opcion de usar stylos como si  fueran objetos
+           y llamarlos en el atributo `style` de html para que jsx lo pueda
+           entender como nuestra voluntad de agregar estilos a esta etiqueta.
+           Tambien recordar que para palabras compuesta usamos notacion camelCase */
+		const styles = {
+			border: '1px solid black',
+			marginBottom: '1em',
+			borderRadius: '0.5em',
+			padding: '1em',
+			background: hasItems ? 'linear-gradient(45deg, #2e3440, #a3be8c)': '#FFF',
+            color: hasItems ? '#FFF' : '#000',
+            transition: 'all 400ms ease-out' /* hace los efectos de transicion mas suaves */
+		}
+
 		return (
-			<div>
+			<div style={styles}>
 				<h3>{this.props.name}</h3>
 				<div> Cantidad: {this.state.cantidad} </div>
-				{/*Esta es una forma de decirle a js que use this de la clase
-           y no del metodo en si: `.bind(this)` sin agregar nada al
-           constructor de la clase.
-
-           onClick={ this.agregar.bind(this) }
-         */}
 				<button onClick={this.agregar}> + </button>
 				<button onClick={this.restar}> - </button>
 				<button onClick={this.limpiar}> 0 </button>
 				<hr />
 				<p>$ {this.props.price} </p>
+                <p>
+                    Total: ${this.props.price * this.state.cantidad}
+                </p>
 			</div>
 		)
 	}
