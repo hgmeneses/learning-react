@@ -1,5 +1,6 @@
 import React from 'react'
-import './TarjetaFruta.css' /* webpack hace esto posible con sus louder, ya que revisa los import y carga los archivos css cuando se necesitan */
+// import './TarjetaFruta.css' /* webpack hace esto posible con sus louder, ya que revisa los import y carga los archivos css cuando se necesitan */
+import styles from './TarjetaFruta.module.css'
 
 /*
  Esto es un componente de clase, y tenemos un constructor que simplemente pasa
@@ -30,14 +31,15 @@ class TarjetaFruta extends React.Component {
 		})
 
 	render() {
-        const hasItems = this.state.cantidad > 0
         /* esto me permite llamar clases por separado pero no me deja complementar
-           las ya existentes, por lo que ahora pasaremos a usar una especie de interpolacion de strings
+        las ya existentes, por lo que ahora pasaremos a usar una especie de interpolacion de strings
         const classes = hasItems ? 'TarjetaFruta-active' : 'TarjetaFruta' */
+        const hasItems = this.state.cantidad > 0
+        const activeClass = hasItems ? styles['card-active'] : '' // Aqui estoy usando la notacion de corchetes para llamar una llave del objecto `styles`
 
         /* usar templeta strings que es poner un string con `` y dentro de estos
            template podemos hacer evaluacion de expresiones usando ${} */
-        const classes = `TarjetaFruta ${hasItems ? 'TarjetaFruta-active': ''}`
+        const classes = styles.card + ' ' + activeClass
 
 		return (
 			<div className={classes}>
