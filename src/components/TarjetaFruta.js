@@ -1,4 +1,5 @@
 import React from 'react'
+import './TarjetaFruta.css' /* webpack hace esto posible con sus louder, ya que revisa los import y carga los archivos css cuando se necesitan */
 
 /*
  Esto es un componente de clase, y tenemos un constructor que simplemente pasa
@@ -29,25 +30,17 @@ class TarjetaFruta extends React.Component {
 		})
 
 	render() {
-        /* si es necesario podemos usarla en la constante de styles directamente o refactorizarla poniendola en una constante */
         const hasItems = this.state.cantidad > 0
+        /* esto me permite llamar clases por separado pero no me deja complementar
+           las ya existentes, por lo que ahora pasaremos a usar una especie de interpolacion de strings
+        const classes = hasItems ? 'TarjetaFruta-active' : 'TarjetaFruta' */
 
-		/* Dentro de react tenemos la opcion de usar stylos como si  fueran objetos
-           y llamarlos en el atributo `style` de html para que jsx lo pueda
-           entender como nuestra voluntad de agregar estilos a esta etiqueta.
-           Tambien recordar que para palabras compuesta usamos notacion camelCase */
-		const styles = {
-			border: '1px solid black',
-			marginBottom: '1em',
-			borderRadius: '0.5em',
-			padding: '1em',
-			background: hasItems ? 'linear-gradient(45deg, #2e3440, #a3be8c)': '#FFF',
-            color: hasItems ? '#FFF' : '#000',
-            transition: 'all 400ms ease-out' /* hace los efectos de transicion mas suaves */
-		}
+        /* usar templeta strings que es poner un string con `` y dentro de estos
+           template podemos hacer evaluacion de expresiones usando ${} */
+        const classes = `TarjetaFruta ${hasItems ? 'TarjetaFruta-active': ''}`
 
 		return (
-			<div style={styles}>
+			<div className={classes}>
 				<h3>{this.props.name}</h3>
 				<div> Cantidad: {this.state.cantidad} </div>
 				<button onClick={this.agregar}> + </button>
