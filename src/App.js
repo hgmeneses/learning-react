@@ -1,6 +1,7 @@
 import React from 'react'
 import TarjetaFruta from './components/TarjetaFruta'
 import TarjetaVerdura from './components/TarjetaVerdura'
+import Contador from './components/Contador/Contador'
 
 const App = () => (
 	<div>
@@ -9,6 +10,7 @@ const App = () => (
 
 		<TarjetaFruta name="Manzana" price={1.5} />
 		<TarjetaFruta name="Sandia" price={5.0} />
+        <Contador />
 	</div>
 )
 
