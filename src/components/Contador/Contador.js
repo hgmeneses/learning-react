@@ -3,20 +3,31 @@ import React, {Component} from 'react'
 
 class Contador extends Component {
 	state = {
-        clicks: 0,
+        video: {
+            title: 'Super Video',
+            likes: 0
+        }
     }
 
     add = () => {
-        this.setState({
-            clicks: this.state.clicks + 1
-        })
+        this.setState((prevState) => ({
+            video: {
+                ...prevState.video,
+                likes: prevState.video.likes + 1
+            }
+        }))
     }
 
 	render() {
 		return(
-            <button onClick={this.add}>
-                Clicks: ({this.state.clicks})
-            </button>
+            <div>
+                <h1>
+                  {this.state.video.title}
+                </h1>
+                <button onClick={this.add}>
+                    Likes: ({this.state.video.likes})
+                </button>
+            </div>
         )
 	}
 }
