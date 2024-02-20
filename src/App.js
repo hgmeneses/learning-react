@@ -9,13 +9,32 @@ const otrosDatos = {
     peleasNocturnas: 300
 }
 
+const styles = {
+    height: '200px',
+    background: 'gold',
+    padding: '1em',
+    boxSizing: 'border-box'
+
+}
+
 
 class App extends Component {
+    /* remove this comment to able the Gato props */
+    /* state =  { fuerza: 100, vidasRestantes: 7, name: 'Pirry' } */
 
-    state =  {
-        fuerza: 100,
-        vidasRestantes: 7,
-        name: 'Pirry' /* Recordemos que si ejecutamos esta linea al estar haciendo untado de objetos sobreescribira el nombre que estamos pasando primero en las props */
+    state = {
+        x: 0,
+        y: 0
+    }
+
+    manejador = (event) => {
+        /* para que el boton funcione, descomente la siguiente linea y uno de los escuchadores de eventos */
+        /* alert('HEY Ninja') */
+        this.setState({
+            x: event.clientX,
+            y: event.clientY
+        })
+
     }
 
     render() {
@@ -31,8 +50,26 @@ class App extends Component {
                 name='Garfield'
                 age='2 años'
                 { ...otrosDatos }
-                { ...this.state }
+                /* { ...this.state } */
                 />
+
+                <button
+                    /* onClick={this.manejador} */
+                    /* onMouseUp={this.manejador} */
+                    /* onMouseDown={this.manejador} */
+                    onDoubleClick={this.manejador}
+                >
+                    Dispara
+                </button>
+                <div
+                    style={styles}
+                    onMouseMove={this.manejador}
+                >
+                    <div>
+                        x: { this.state.x }
+                        y: { this.state.y }
+                    </div>
+                </div>
             </div>
         )
     }
